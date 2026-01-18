@@ -1,0 +1,39 @@
+# General
+.DS_Store
+Thumbs.db
+*.swp
+
+# IDE
+.idea/
+.vscode/
+*.iml
+.classpath
+.project
+.settings/
+
+# Java / Spring Boot / Maven
+target/
+*.class
+*.log
+*.logs
+*.jar
+*.war
+*.ear
+# We usually keep mvnw and .mvn so the build is reproducible, 
+# but we ignore the actual build output (target/)
+
+# Node / Frontend
+node_modules/
+dist/
+build/
+coverage/
+.env
+.env.*
+! .env.example
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Misc
+structure.txt
