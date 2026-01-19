@@ -10,6 +10,7 @@ Thumbs.db
 .classpath
 .project
 .settings/
+.metadata/
 
 # Java / Spring Boot / Maven
 target/
