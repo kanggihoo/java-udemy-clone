@@ -1,9 +1,9 @@
-package main.java.com.ecommerce.sb_ecom.service;
+package com.ecommerce.sb_ecom.service;
 
-import main.java.com.ecommerce.sb_ecom.dto.Category;
+import com.ecommerce.sb_ecom.dto.Category;
 import java.util.*;
 
-public interface CategoryServiceImpl {
+public interface CategoryService {
     List<Category> getAllCategories();
 
     void createCategory(Category category);

@@ -1,11 +1,7 @@
-package main.java.com.ecommerce.sb_ecom.dto;
-
-import lombok.Getter;
-import lombok.Setter;
-
-import java.lang.reflect.Array;
+package com.ecommerce.sb_ecom.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor

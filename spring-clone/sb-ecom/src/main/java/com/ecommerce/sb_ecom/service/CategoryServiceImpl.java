@@ -1,42 +1,57 @@
-package main.java.com.ecommerce.sb_ecom.service;
+package com.ecommerce.sb_ecom.service;
 
-import main.java.com.ecommerce.sb_ecom.service.CategoryServiceImpl;
-import main.java.com.ecommerce.sb_ecom.dto.Category;
-import org.springframework.HttpStatus;
-import org.springfreamwork.stereotype.Service;
-
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+import com.ecommerce.sb_ecom.entity.CategoryEntity;
+import com.ecommerce.sb_ecom.repositories.CategoryRepositoriy;
 import java.util.*;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
-public class CategoryService implements CategoryServiceImpl {
+public class CategoryServiceImpl implements CategoryService {
 
-    private List<Category> categories = new ArrayList<>();
-    private Long nextId = 1L;
+    private final CategoryRepositoriy categoryRepositoriy;
+
+    public CategoryServiceImpl(CategoryRepositoriy categoryRepositoriy) {
+        this.categoryRepositoriy = categoryRepositoriy;
+    }
 
     @Override
-    public void createCategory(Category category) {
-        // TODO Auto-generated method stub
+    public void createCategory(CategoryEntity category) {
+
         category.setCategoryId(nextId++);
         categories.add(category);
     }
 
     @Override
     public String deleteCategory(Long categoryId) {
-        // TODO Auto-generated method stub
-        Category category = categories;
-        return "";
+
+        CategoryRepositoriy category = categories.stream().filter(c -> c.getCategoryId().equals(categoryId)).findFirst()
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Resource not found"));
+
+        categories.remove(category);
+        return "categoryId: " + categoryId + " deleted successfully !!";
     }
 
     @Override
-    public List<Category> getAllCategories() {
-        // TODO Auto-generated method stub
-        return null;
+    public List<CategoryRepositoriy> getAllCategories() {
+        return this.categoryRepositoriy.findAll()
     }
 
     @Override
-    public Category updateCategory(Category category, Long categoryId) {
-        // TODO Auto-generated method stub
-        return null;
+    public CategoryRepositoriy updateCategory(CategoryRepositoriy category, Long categoryId) {
+
+        Optional<CategoryRepositoriy> optionalCategory = categories.stream()
+                .filter(c -> c.getCategoryId().equals(categoryId))
+                .findFirst();
+        if (optionalCategory.isPresent()) {
+            CategoryRepositoriy existingCategory = optionalCategory.get();
+            existingCategory.setCategoryName(category.getCategoryName());
+            return existingCategory;
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Category not found");
+        }
+
     }
 
 }
