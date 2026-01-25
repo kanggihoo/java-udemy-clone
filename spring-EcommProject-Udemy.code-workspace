@@ -4,7 +4,10 @@
 			"path": "."
 		},
 		{
-			"path": "../../Downloads/sb-ecom-category"
+			"path": "spring-clone/sb-ecom"
 		}
-	]
+	],
+	"settings": {
+		"java.configuration.updateBuildConfiguration": "interactive"
+	}
 }
