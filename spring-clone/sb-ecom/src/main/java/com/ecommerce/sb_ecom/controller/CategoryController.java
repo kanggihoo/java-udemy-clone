@@ -16,6 +16,7 @@ import org.springframework.web.server.ResponseStatusException;
 @RestController
 @RequestMapping("/api")
 public class CategoryController {
+    private final CategoryService categoryService;
     
     public CategoryController(CategoryService categoryService) {
         this.categoryService = categoryService;
